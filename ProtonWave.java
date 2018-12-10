@@ -94,7 +94,9 @@ public class ProtonWave extends Actor
          *             allAsteroids List. Remember you have to get the element first
          *             before you hit it with damage.
          */
-            
+        for(int i = 0; i < allAsteroids.size(); i++)
+        {
+            allAsteroids.get(i).hit(DAMAGE);
+        }
     }
-    
 }

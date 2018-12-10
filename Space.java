@@ -1,7 +1,12 @@
 /**
  * TODO (115): Add an assignment comment block below
  */
-
+/**
+ * Name: Idan
+ * Class: Computer Science
+ * Teacher: Mr. Hardman
+ * Last Modified: 12/10/2018
+ */
 import greenfoot.*;
 
 /**
@@ -15,7 +20,7 @@ public class Space extends World
     private Counter scoreCounter;
     
     //TODO (62): Declare an integer instance constant called START_ASTEROIDS initialized to a one-digit number
-    
+    private final int START_ASTEROIDS = Greenfoot.getRandomNumber(9);
 
     /**
      * Create the space and all objects within it.
@@ -34,6 +39,7 @@ public class Space extends World
         
         
         prepareGame();
+        paintStars(20);
     }
     
     /**
@@ -77,7 +83,28 @@ public class Space extends World
      * TODO (9): Inside the loop, fill an oval on the background at a location of (x, y) 
      *           that is 3 pixels wide and 3 pixels high.
      */
-
+    /**
+     * paintStars is the method used for adding in the stars.
+     * 
+     * @params - There is one integer parameter used for count.
+     * @returns - There are no return types.
+     */
+    private void paintStars(int count)
+    {
+        int x;
+        int y;
+        int transparency;
+        GreenfootImage background = getBackground();
+        for( int i = 0; i < count; i++)
+        {
+            x = Greenfoot.getRandomNumber(getWidth());
+            y = Greenfoot.getRandomNumber(getHeight());
+            transparency = Greenfoot.getRandomNumber(256);
+            getBackground().setColor(new Color(255,255,255,transparency));
+            getBackground().fillOval(x,y,3,3);
+        }
+    }
+    
     /**
      * prepareGame adds the objects to the game to get the game ready
      * to be played
@@ -96,7 +123,7 @@ public class Space extends World
         addObject(scoreCounter, 60, 480);
         
         //TODO (69): Make a method call to addAsteroids that uses your constant for the number of asteroids
-        
+        addAsteroids(START_ASTEROIDS);
     }
     
     /**
@@ -117,7 +144,23 @@ public class Space extends World
      * TODO (68): Inside the loop, use the x and y values to add a 
      *            new Asteroid object at that location.
      */
-    
+    /**
+     * addAsteroids method adds the asteroids in the world at a random x and y.
+     * 
+     * @params - There is one parameter which is int count used for the for loop.
+     * @returns - There are no return types.
+     */
+    private void addAsteroids(int count)
+    {
+        int x;
+        int y;
+        for(int i = 0; i < count; i++)
+        {
+            x = Greenfoot.getRandomNumber(getWidth()/2);
+            y = Greenfoot.getRandomNumber(getHeight()/2);
+            addObject(new Asteroid(),x,y);
+        }
+    }
 
     /**
      * gameOver displays a ScoreBoard and the player's score
